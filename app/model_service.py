@@ -22,7 +22,7 @@ class ModelService:
         self.model = YOLO(model_path)
         self.device = device
 
-    def predict(self, img: np.ndarray, conf: float = 0.1, iou: float = 0.7) -> List[Dict[str, Any]]:
+    def predict(self, img: np.ndarray, conf: float = 0.25, iou: float = 0.45) -> List[Dict[str, Any]]:
         """
         img: HxWxC uint8 numpy array (BGR or RGB both accepted; ultralytics handles numpy arrays)
         Returns: list of detections: each dict: {class_id, class_name, conf, bbox: [x0,y0,x1,y1]}
@@ -31,7 +31,6 @@ class ModelService:
         # ultralytics returns Results objects; using model.predict to control args
         results = self.model.predict(
         source=img,
-        imgsz=1120,
         conf=conf,
         iou=iou,
         device=self.device,

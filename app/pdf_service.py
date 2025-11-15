@@ -15,7 +15,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 # default render DPI scale (higher = better detection, slower)
-DEFAULT_DPI = 500 # 150 dpi is a good balance for scanned docs
+DEFAULT_DPI = 150  # 150 dpi is a good balance for scanned docs
 
 def render_page_to_image(page: fitz.Page, dpi: int = DEFAULT_DPI) -> Image.Image:
     """
@@ -58,7 +58,6 @@ def annotate_image_with_detections(img: Image.Image, detections: List[Dict[str, 
 
         # Draw label text
         draw.text((x0 + 2, y0 - text_h - 2), label, fill="white", font=font)
-
     return img
 
 def process_pdf_bytes(pdf_bytes: bytes, model_service, dpi: int = DEFAULT_DPI, conf: float = 0.25, iou: float = 0.45) -> bytes:
