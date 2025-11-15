@@ -19,8 +19,6 @@ Modern, clean, and production-ready.
 - [🔌 API Endpoints](#-api-endpoints)
 - [🧩 Example JSON Response](#-example-json-response)
 - [🖼️ Streamlit UI Features](#️-streamlit-ui-features)
-- [🛠️ Troubleshooting](#-troubleshooting)
-- [🏁 Deployment Notes](#-deployment-notes)
 
 ---
 
@@ -70,6 +68,9 @@ $ venv\Scripts\activate
 ```bash
 (venv) $ pip install -r requirements.txt
 ```
+
+--- 
+
 # 🚀 **Running the Application**
 
 The application runs two separate services:
@@ -94,8 +95,9 @@ http://localhost:8000/docs
 UI available at:
 http://localhost:8501
 
+---
 
-#🔌 API Endpoints
+# 🔌 API Endpoints
 
 *POST /predict_json*
 
@@ -108,3 +110,55 @@ Upload PDF → returns annotated PDF file.
 *GET /health*
 
 Simple health check.
+
+---
+
+# 🧩 Example JSON Response
+```json
+{
+  "document.pdf": {
+    "page_1": {
+      "annotations": [
+        {
+          "annotation_117": {
+            "category": "signature",
+            "bbox": {
+              "x": 510,
+              "y": 146,
+              "width": 250,
+              "height": 98.89
+            },
+            "area": 24722.5
+          }
+        }
+      ],
+      "page_size": {
+        "width": 1684,
+        "height": 1190
+      }
+    }
+  }
+}
+```
+
+--- 
+
+# 🖼️ Streamlit UI Features
+
+📄 PDF uploader
+
+⚡ Automatic inference on backend
+
+👁 Annotated page previews
+
+🔍 Hover magnifier tool (loupe)
+
+📥 Download:
+
+annotated PDF
+
+JSON results
+
+🧩 JSON viewer with syntax highlighting
+
+Responsive layout (2-column preview)
