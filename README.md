@@ -51,24 +51,60 @@ Modern, clean, and production-ready.
 ```bash
 $ git clone <your-repo-url>
 $ cd <your-project-folder>
-
-### **2) Create a virtual environment**
+```
+**2) Create a virtual environment**
 ```bash
 $ python3 -m venv venv
 $ source venv/bin/activate
-
+```
 ** windows: **
 ```bash
 $ venv\Scripts\activate
-
+```
 ** Linux: **
 ```bash
 $ venv\Scripts\activate
-
+```
 ### **3) Install dependencies**
 
 ```bash
 (venv) $ pip install -r requirements.txt
+```
+# 🚀 **Running the Application**
 
-# 📦 **🚀 Running the Application**
-The system consists of *two processes*:
+The application runs two separate services:
+
+✔ *FastAPI backend*
+✔ *Streamlit frontend*
+
+### 1️⃣Start the FastAPI backend
+```bash
+(venv) $ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+Backend available at:
+http://localhost:8000
+
+Swagger docs:
+http://localhost:8000/docs
+
+###  2️⃣Start the Streamlit UI
+```bash
+(venv) $ streamlit run ui/ui_app.py
+```
+UI available at:
+http://localhost:8501
+
+
+#🔌 API Endpoints
+
+*POST /predict_json*
+
+Upload PDF → returns detection JSON.
+
+*POST /annotate_pdf*
+
+Upload PDF → returns annotated PDF file.
+
+*GET /health*
+
+Simple health check.
