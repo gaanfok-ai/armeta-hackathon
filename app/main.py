@@ -45,10 +45,16 @@ async def annotate_pdf(file: UploadFile = File(...), dpi: Optional[int] = 150, c
     annotated_pdf_bytes = process_pdf_bytes(content, model_service, dpi=dpi, conf=conf, iou=iou)
     return StreamingResponse(io.BytesIO(annotated_pdf_bytes), media_type="application/pdf", headers={"Content-Disposition": "attachment; filename=annotated.pdf"})
 
-@app.post("/predict_json", response_model=PredictResponse, summary="Upload PDF -> return JSON detections per page")
-async def predict_json(file: UploadFile = File(...), dpi: Optional[int] = 150, conf: float = 0.25, iou: float = 0.45):
+@app.post("/predict_json")
+async def predict_json(
+    file: UploadFile = File(...),
+    dpi: Optional[int] = 150,
+    conf: float = 0.25,
+    iou: float = 0.45
+):
     if file.content_type != "application/pdf":
         raise HTTPException(status_code=400, detail="Upload a PDF file.")
+
     content = await file.read()
     if model_service is None:
         raise HTTPException(status_code=500, detail="Model not loaded")
@@ -56,16 +62,55 @@ async def predict_json(file: UploadFile = File(...), dpi: Optional[int] = 150, c
     import fitz
     import numpy as np
 
+    filename = file.filename
     doc = fitz.open(stream=content, filetype="pdf")
-    pages_resp = []
-    for i in range(doc.page_count):
-        page = doc.load_page(i)
+
+    output = {filename: {}}
+    annotation_counter = 1  # global counter for annotation_xxx
+
+    for page_index in range(doc.page_count):
+        page = doc.load_page(page_index)
         img = render_page_to_image(page, dpi=dpi)
         arr = np.asarray(img)
-        dets = model_service.predict(arr, conf=conf, iou=iou)
-        det_objs = [DetectionSchema(class_id=d['class_id'], class_name=d['class_name'], conf=d['conf'], bbox=d['bbox']) for d in dets]
-        pages_resp.append(PageDetections(page_index=i, detections=det_objs))
-    return PredictResponse(pages=pages_resp)
+
+        detections = model_service.predict(arr, conf=conf, iou=iou)
+
+        page_w, page_h = img.size
+
+        page_key = f"page_{page_index + 1}"
+        page_dict = {
+            "annotations": [],
+            "page_size": {"width": page_w, "height": page_h}
+        }
+
+        for det in detections:
+            x0, y0, x1, y1 = det["bbox"]
+            width = x1 - x0
+            height = y1 - y0
+            area = width * height
+
+            ann_key = f"annotation_{annotation_counter}"
+            annotation_counter += 1
+
+            ann = {
+                ann_key: {
+                    "category": det["class_name"],
+                    "bbox": {
+                        "x": float(x0),
+                        "y": float(y0),
+                        "width": float(width),
+                        "height": float(height)
+                    },
+                    "area": float(area)
+                }
+            }
+
+            page_dict["annotations"].append(ann)
+
+        output[filename][page_key] = page_dict
+
+    return output
+
 
 @app.get("/health")
 def health():
