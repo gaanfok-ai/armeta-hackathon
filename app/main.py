@@ -66,7 +66,7 @@ async def predict_json(
     doc = fitz.open(stream=content, filetype="pdf")
 
     output = {filename: {}}
-    annotation_counter = 1  # global counter for annotation_xxx
+    annotation_counter = 1
 
     for page_index in range(doc.page_count):
         page = doc.load_page(page_index)
@@ -75,12 +75,16 @@ async def predict_json(
 
         detections = model_service.predict(arr, conf=conf, iou=iou)
 
+        # Convert page size
         page_w, page_h = img.size
 
-        page_key = f"page_{page_index + 1}"
+        # Prepare page dictionary
         page_dict = {
             "annotations": [],
-            "page_size": {"width": page_w, "height": page_h}
+            "page_size": {
+                "width": page_w,
+                "height": page_h
+            }
         }
 
         for det in detections:
@@ -92,7 +96,7 @@ async def predict_json(
             ann_key = f"annotation_{annotation_counter}"
             annotation_counter += 1
 
-            ann = {
+            annotation = {
                 ann_key: {
                     "category": det["class_name"],
                     "bbox": {
@@ -105,11 +109,15 @@ async def predict_json(
                 }
             }
 
-            page_dict["annotations"].append(ann)
+            page_dict["annotations"].append(annotation)
 
-        output[filename][page_key] = page_dict
+        # 🔥 Only include pages with annotations
+        if len(page_dict["annotations"]) > 0:
+            page_key = f"page_{page_index + 1}"
+            output[filename][page_key] = page_dict
 
     return output
+
 
 
 @app.get("/health")
