@@ -1,99 +1,47 @@
-YOLO PDF Annotator
+<div align="center">
 
-Detect QR codes, signatures, and stamps on scanned documents using YOLOv8 and annotate PDFs automatically.
-Includes:
+# **YOLO PDF Annotator**
+Detect **QR codes**, **signatures**, and **stamps** on scanned PDFs using **YOLOv8**, with a **FastAPI backend** and a **Streamlit frontend**.
 
-FastAPI backend (model inference + PDF annotation)
+---
 
-Streamlit frontend (upload, preview, magnifier, download)
+### 🚀 *PDF → Detection JSON → Annotated PDF → Interactive UI*
+Modern, clean, and production-ready.
 
-Custom JSON output format
+</div>
 
-Loupe-style hover magnifier for PDF pages
+---
 
-⚙️ Installation
-1) Clone the repo
-git clone <your-repo-url>
-cd <your-project-folder>
+# 📚 **Table of Contents**
+- [📦 Features](#-features)
+- [📁 Project Structure](#-project-structure)
+- [⚙️ Installation](#️-installation)
+- [🚀 Running the Application](#-running-the-application)
+- [🔌 API Endpoints](#-api-endpoints)
+- [🧩 Example JSON Response](#-example-json-response)
+- [🖼️ Streamlit UI Features](#️-streamlit-ui-features)
+- [🛠️ Troubleshooting](#-troubleshooting)
+- [🏁 Deployment Notes](#-deployment-notes)
 
-2) Create virtual environment (recommended)
-python3 -m venv venv
-source venv/bin/activate
+---
 
-Windows:
+# 📦 **Features**
+- Upload scanned PDF documents  
+- Detect:
+  - ✒️ Signatures  
+  - 📮 Stamps  
+  - 📎 QR Codes  
+- Generate:
+  - ✔ Annotated PDF with bounding boxes  
+  - ✔ JSON output in a **custom format**  
+- Interactive UI:
+  - 🔍 Hover magnifier (loupe)  
+  - 📄 Annotated preview  
+  - 📥 One-click downloads  
+- Removes pages with no detections  
+- Clean, responsive interface  
 
-venv\Scripts\activate
+---
 
-Linux:
-source venv/bin/activate
+# 📁 **Project Structure**
 
-3) Install dependencies
-pip install -r requirements.txt
-
-🚀 Running the Application
-
-Your system has two processes:
-
-FastAPI backend (API + model inference)
-
-Streamlit frontend (UI)
-
-1️⃣ Start FastAPI backend
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-
-
-Backend will start at:
-
-http://localhost:8000
-
-
-Interactive API docs (Swagger):
-
-http://localhost:8000/docs
-
-2️⃣ Start Streamlit UI
-streamlit run ui/ui_app.py
-
-
-UI will be available at:
-
-http://localhost:8501
-
-🔌 API Endpoints
-POST /predict_json
-
-Upload PDF → returns custom JSON format with detections.
-
-POST /annotate_pdf
-
-Upload PDF → returns annotated PDF as bytes.
-
-GET /health
-
-Simple health check.
-
-🧩 Example JSON Response Format
-{
-  "document.pdf": {
-    "page_1": {
-      "annotations": [
-        {
-          "annotation_117": {
-            "category": "signature",
-            "bbox": {
-              "x": 510,
-              "y": 146,
-              "width": 250,
-              "height": 98.89
-            },
-            "area": 24722.5
-          }
-        }
-      ],
-      "page_size": {
-        "width": 1684,
-        "height": 1190
-      }
-    }
-  }
-}
