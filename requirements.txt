@@ -1,0 +1,11 @@
+fastapi>=0.95.2
+uvicorn[standard]>=0.22.0
+ultralytics>=8.0.0   # provides YOLO() loader for modern yolovX .pt
+pymupdf>=1.22.0      # pip install PyMuPDF (module name 'fitz')
+pillow>=9.0.0
+numpy>=1.24.0
+python-multipart>=0.0.6
+opencv-python>=4.7.0
+streamlit>=1.33.0
+requests>=2.31.0
+pymupdf>=1.22.0
