@@ -51,3 +51,24 @@ Modern, clean, and production-ready.
 ```bash
 $ git clone <your-repo-url>
 $ cd <your-project-folder>
+
+### **2) Create a virtual environment**
+```bash
+$ python3 -m venv venv
+$ source venv/bin/activate
+
+** windows: **
+```bash
+$ venv\Scripts\activate
+
+** Linux: **
+```bash
+$ venv\Scripts\activate
+
+### **3) Install dependencies**
+
+```bash
+(venv) $ pip install -r requirements.txt
+
+# 📦 **🚀 Running the Application**
+The system consists of *two processes*:
