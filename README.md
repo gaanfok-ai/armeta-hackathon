@@ -14,7 +14,6 @@ Modern, clean, and production-ready.
 
 # 📚 **Table of Contents**
 - [📦 Features](#-features)
-- [📁 Project Structure](#-project-structure)
 - [⚙️ Installation](#️-installation)
 - [🚀 Running the Application](#-running-the-application)
 - [🔌 API Endpoints](#-api-endpoints)
@@ -43,5 +42,12 @@ Modern, clean, and production-ready.
 
 ---
 
-# 📁 **Project Structure**
+# ⚙️ **Installation**
 
+> 📌 *Tested on Python 3.9–3.12.*
+
+### **1) Clone the repository**
+
+```bash
+$ git clone <your-repo-url>
+$ cd <your-project-folder>
