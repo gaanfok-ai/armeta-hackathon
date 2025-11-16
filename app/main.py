@@ -90,8 +90,8 @@ async def predict_json(
         for det in detections:
             scale = 72
             x0, y0, x1, y1 = det["bbox"]
-            pdf_x0 = dpi / scale
-            pdf_y0 = dpi / scale
+            pdf_x0 = x0 / scale
+            pdf_y0 = y0 / scale
             pdf_w = (x1 - x0) / scale
             pdf_h = (y1 - y0) / scale
             area = pdf_w * pdf_h

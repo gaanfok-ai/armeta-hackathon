@@ -33,6 +33,32 @@ if uploaded_file:
     detections = r_json.json()
     json_str = json.dumps(detections, indent=2, ensure_ascii=False)
 
+    # =====================================================
+    # 🔍 SECTION — Detection Summary (Before Preview)
+    # =====================================================
+    st.subheader("📋 Detection Summary")
+
+    filename = list(detections.keys())[0]
+    pages = detections[filename]
+
+    if not pages:
+        st.info("No detections found in this document.")
+    else:
+        for page_key, page_data in pages.items():
+            annos = page_data["annotations"]
+            label_counts = {}
+
+            # Count detections by class
+            for ann in annos:
+                key = list(ann.keys())[0]
+                cls = ann[key]["category"]
+                label_counts[cls] = label_counts.get(cls, 0) + 1
+
+            # Format readable output
+            label_str = ", ".join([f"{k} ({v})" for k, v in label_counts.items()])
+            st.write(f"**{page_key}** — {label_str}")
+
+
     # ------- STEP 2: GENERATE ANNOTATED PDF --------
     with st.spinner("Generating annotated PDF..."):
         uploaded_file.seek(0)
