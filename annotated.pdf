@@ -1,1 +1,0 @@
-{"detail":[{"type":"value_error","loc":["body","file"],"msg":"Value error, Expected UploadFile, received: <class 'str'>","input":"/home/gaanfok/Desktop/armeta/v3/document.pdf","ctx":{"error":{}}}]}

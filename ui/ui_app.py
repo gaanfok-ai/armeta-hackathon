@@ -33,9 +33,8 @@ if uploaded_file:
     detections = r_json.json()
     json_str = json.dumps(detections, indent=2, ensure_ascii=False)
 
-    # =====================================================
-    # 🔍 SECTION — Detection Summary (Before Preview)
-    # =====================================================
+    # Detection Summary (Before Preview)
+
     st.subheader("📋 Detection Summary")
 
     filename = list(detections.keys())[0]
@@ -59,7 +58,7 @@ if uploaded_file:
             st.write(f"**{page_key}** — {label_str}")
 
 
-    # ------- STEP 2: GENERATE ANNOTATED PDF --------
+    # annotated pdf generation
     with st.spinner("Generating annotated PDF..."):
         uploaded_file.seek(0)
         files = {"file": (uploaded_file.name, uploaded_file.read(), "application/pdf")}
@@ -71,9 +70,6 @@ if uploaded_file:
 
     annotated_pdf_data = r_pdf.content
 
-    # =====================================================
-    # 🔥 SECTION 1 — DOWNLOADS FIRST (Top of Page)
-    # =====================================================
     st.subheader("📥 Download your results")
 
     # Two large buttons side-by-side
@@ -99,9 +95,7 @@ if uploaded_file:
 
     st.markdown("---")
 
-    # =====================================================
-    # 🔥 SECTION 2 — ANNOTATED PREVIEW (Middle)
-    # =====================================================
+    
     st.subheader("📄 Annotated PDF Preview")
 
     pdf_stream = io.BytesIO(annotated_pdf_data)
@@ -118,10 +112,6 @@ if uploaded_file:
         col_idx = (col_idx + 1) % 2
 
     st.markdown("---")
-
-    # =====================================================
-    # 🔥 SECTION 3 — JSON DATA (Bottom)
-    # =====================================================
     st.subheader("🧩 JSON Detection Data")
     st.code(json_str, language="json")
 

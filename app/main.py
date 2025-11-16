@@ -88,7 +88,7 @@ async def predict_json(
         }
 
         for det in detections:
-            scale = 72
+            scale = dpi / 72 
             x0, y0, x1, y1 = det["bbox"]
             pdf_x0 = x0 / scale
             pdf_y0 = y0 / scale
@@ -114,7 +114,7 @@ async def predict_json(
 
             page_dict["annotations"].append(annotation)
 
-        # 🔥 Only include pages with annotations
+        # Only include pages with annotations
         if len(page_dict["annotations"]) > 0:
             page_key = f"page_{page_index + 1}"
             output[filename][page_key] = page_dict

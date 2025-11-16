@@ -178,3 +178,12 @@ Simple health check.
 🧩 JSON viewer with syntax highlighting
 
 Responsive layout (2-column preview)
+
+---
+# Load Testing
+To test system for different loads you may use locustfile
+
+```bash
+locust -f locustfile.py
+```
+Then go to: http://localhost:8089 and test with different configurations
