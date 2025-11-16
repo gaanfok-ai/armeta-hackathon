@@ -158,9 +158,8 @@ Simple health check.
 
 📥 Download:
 
-annotated PDF
-
-JSON results
+  - annotated PDF
+  - JSON results
 
 🧩 JSON viewer with syntax highlighting
 
