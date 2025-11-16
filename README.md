@@ -1,7 +1,7 @@
 <div align="center">
 
-# **YOLO PDF Annotator**
-Detect **QR codes**, **signatures**, and **stamps** on scanned PDFs using **YOLOv8**, with a **FastAPI backend** and a **Streamlit frontend**.
+# **Document Scan Annotator**
+Detect **QR codes**, **signatures**, and **different stamps** on scanned PDFs using fine-tuned **YOLOv12m** on a custom dataset, with a **FastAPI backend** and a **Streamlit frontend**.
 
 ---
 
