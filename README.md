@@ -32,8 +32,6 @@ This repository uses a **fine-tuned YOLOv12m model** designed to detect on the s
 - QR and bar codes
 - Fingerprints
 
-The model and dataset is stored in the training_dir.zip.
-**For more information please refer to `training_dir/README.md`**
 
 ---
 
