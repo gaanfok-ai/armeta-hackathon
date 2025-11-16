@@ -41,9 +41,6 @@ Modern, clean, and production-ready.
 - Clean, responsive interface
 - Accurate multi-class detection
 
----
-
-# **CV model directory in /model_dir**
 
 ---
 
