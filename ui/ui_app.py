@@ -12,7 +12,7 @@ API_URL_JSON = "http://localhost:8000/predict_json"
 
 st.set_page_config(page_title="YOLO PDF Annotator", layout="wide")
 
-st.title("📄 YOLO PDF Annotator")
+st.title("📄 Document scan Annotator")
 st.caption("Detect QR codes, signatures, and stamps in scanned PDFs.")
 
 uploaded_file = st.file_uploader("Upload a PDF", type=["pdf"])
