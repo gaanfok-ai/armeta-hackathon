@@ -43,6 +43,10 @@ Modern, clean, and production-ready.
 
 ---
 
+# **CV model directory in /model_dir**
+
+---
+
 # ⚙️ **Installation**
 
 > 📌 *Tested on Python 3.9–3.12.*
