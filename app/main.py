@@ -88,10 +88,13 @@ async def predict_json(
         }
 
         for det in detections:
+            scale = 72
             x0, y0, x1, y1 = det["bbox"]
-            width = x1 - x0
-            height = y1 - y0
-            area = width * height
+            pdf_x0 = dpi / scale
+            pdf_y0 = dpi / scale
+            pdf_w = (x1 - x0) / scale
+            pdf_h = (y1 - y0) / scale
+            area = pdf_w * pdf_h
 
             ann_key = f"annotation_{annotation_counter}"
             annotation_counter += 1
@@ -100,10 +103,10 @@ async def predict_json(
                 ann_key: {
                     "category": det["class_name"],
                     "bbox": {
-                        "x": float(x0),
-                        "y": float(y0),
-                        "width": float(width),
-                        "height": float(height)
+                        "x": float(pdf_x0),
+                        "y": float(pdf_y0),
+                        "width": float(pdf_w),
+                        "height": float(pdf_h)
                     },
                     "area": float(area)
                 }

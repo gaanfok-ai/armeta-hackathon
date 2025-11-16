@@ -13,12 +13,26 @@ Modern, clean, and production-ready.
 ---
 
 # 📚 **Table of Contents**
+- [ Model](#-model)
 - [📦 Features](#-features)
 - [⚙️ Installation](#️-installation)
 - [🚀 Running the Application](#-running-the-application)
 - [🔌 API Endpoints](#-api-endpoints)
 - [🧩 Example JSON Response](#-example-json-response)
 - [🖼️ Streamlit UI Features](#️-streamlit-ui-features)
+
+---
+# 🧠 **Model & Dataset Information**
+
+This repository uses a **fine-tuned YOLOv12m model** designed to detect on the scanned documents/papers:
+
+- Signatures  
+- Stamps(it classifies it in differnt shapes: 'stamp_circle', 'stamp_oval', 'stamp_rect', 'stamp_triangle', 'stamp_wax', 'stamp_word')
+- QR and bar codes
+- Fingerprints
+
+The model and dataset documentation are kept in a dedicated folder to avoid cluttering the main project and because the dataset may be too large to store directly in the repository.
+**For detailed information please refer to `model/README.md`
 
 ---
 
