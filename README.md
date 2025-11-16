@@ -1,11 +1,11 @@
 <div align="center">
 
 # **Document Scan Annotator**
-Detect **QR codes**, **signatures**, and **different stamps** on scanned PDFs using fine-tuned **YOLOv12m** on a custom dataset, with a **FastAPI backend** and a **Streamlit frontend**.
+Detects **QR codes**, **signatures**, and **different stamps** on scanned PDFs using fine-tuned **YOLOv12m** on a custom dataset, with a **FastAPI backend** and a **Streamlit frontend**.
 
 ---
 
-### 🚀 *PDF → Detection JSON → Annotated PDF → Interactive UI*
+### *PDF → Detection → Annotated PDF & JSON → Interactive UI*
 Modern, clean, and production-ready.
 
 </div>
@@ -26,8 +26,10 @@ Modern, clean, and production-ready.
 - Upload scanned PDF documents  
 - Detect:
   - ✒️ Signatures  
-  - 📮 Stamps  
-  - 📎 QR Codes  
+  - 📮 Stamps of different types  
+  - 📎 QR Codes
+  - Bar codes
+  - Fingerprints
 - Generate:
   - ✔ Annotated PDF with bounding boxes  
   - ✔ JSON output in a **custom format**  
@@ -35,8 +37,9 @@ Modern, clean, and production-ready.
   - 🔍 Hover magnifier (loupe)  
   - 📄 Annotated preview  
   - 📥 One-click downloads  
-- Removes pages with no detections  
-- Clean, responsive interface  
+- Removes pages with no detections in JSON  
+- Clean, responsive interface
+- Accurate multi-class detection
 
 ---
 
