@@ -157,7 +157,6 @@ Simple health check.
 🔍 Hover magnifier tool (loupe)
 
 📥 Download:
-
   - annotated PDF
   - JSON results
 
